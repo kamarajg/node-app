@@ -1,0 +1,14 @@
+{
+  "name": "federated-gateway",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@apollo/gateway": "^2.5.3",
+    "apollo-server": "^3.12.1",
+    "graphql": "^16.6.0"
+  }
+}

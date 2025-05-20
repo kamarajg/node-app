@@ -1,0 +1,44 @@
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: service_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3307:3306"
+
+  account-service:
+    build: ./account-service
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: service_db
+      DB_USER: user
+      DB_PASS: pass
+    ports:
+      - "4001:4001"
+    depends_on:
+      - mysql
+
+  device-service:
+    build: ./device-service
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: service_db
+      DB_USER: user
+      DB_PASS: pass
+    ports:
+      - "4002:4002"
+    depends_on:
+      - mysql    
+
+  gateway:
+    build: ./gateway
+    ports:
+      - "4000:4000"
+    depends_on:
+      - account-service
+      - device-service    
