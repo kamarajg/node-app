@@ -17,5 +17,5 @@ const server = new ApolloServer({
 });
 
 server.listen({ port: 4000 }).then(({ url }) => {
-  console.log(`🚀 Federated Gateway ready at ${url}`);
+  console.log(`APIs ${url}`);
 });
